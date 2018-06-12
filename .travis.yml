@@ -12,6 +12,6 @@ env:
   - secure: mAYcU+8xzamChrJ1ksNG3pM6+TNq0R4QTHBkyxOjIg7wQa36d/5TPqvrRrwNZZh8DnGinGJn3utqWImv34SlgnsUB/E7KNmi0SbaTLEucP/6AV+hv9ykgCuX9OgItGg+J+EhcWAYE4eShsQakXhDFBmi17ZlGgBd5D9O0YIdnNg/a9Kw/4fTrBOocOqtcq0yq8O53jQqHi4AznyZ8VRBHajDbM4q7dMXcNWZBwuDrlUoof/Gd7+i6ysSvqUd5miHf6Gw8tzLT+MzGAwpSEtxpiRhhMJIRbPrV9TPH/BRyoVHby407ObJQbbPrcG5hDLOYjPY1MfPXTtnBXUg++LzsjeNaUcJqNfIRuphA6HYf5kgyWZ3aeoUQwTblzbWbDsR747klsNu80a2rTGoi0RRpP4eJdoHowrNBcJX8wYAO4bIb9e756Yna4evuKVSyaEz+ZMLNcs6Cbn4bdaD6bIGm8BM7BuA+He3WfcObpOX8PLOWQkliPerqxeIHZ/m5BhMAjrRqyq9iE/J5obi/BxlINHJ/uFehxBgLeHHu+NbxV7Yhxz/Rd4pJX1lAWnmkDQTa1S/fjs6N0Sg++RnlhAoV7Z/RJUdD83v+3U3+6LtapG0vX4zD+KhDBrA+wd7L5yk/KGHBlO5IxaGjoRxN73RiuJZaGHRe0xDlZSo0rIoOrQ=
 deploy:
   provider: script
-  script: deploy-tag.sh
+  script: ./deploy-tag.sh
   on:
     tags: true

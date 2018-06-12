@@ -12,8 +12,8 @@ RUN apt update
 # install pip
 RUN apt install -y python3-pip
 
-# install localstack
-RUN pip3 install localstack
+# install localstack and awscli
+RUN pip3 install localstack awscli
 
 # install npm because localstack needs it
 RUN apt install npm
