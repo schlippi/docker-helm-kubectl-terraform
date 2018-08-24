@@ -1,12 +1,10 @@
-# maven-localstack-docker-image
-A maven Docker image that supports localstack
+# docker-images
+Various Docker images.
 
-[![Build Status](https://travis-ci.org/ngeor/maven-localstack-docker-image.svg?branch=master)](https://travis-ci.org/ngeor/maven-localstack-docker-image)
+[![Build Status](https://travis-ci.org/ngeor/docker-images.svg?branch=master)](https://travis-ci.org/ngeor/docker-images)
 
-## Details
+## helm-kubectl-terraform
 
-- Builds on top of `maven:3-jdk-8`
-- Includes python 3, pip 3 and AWS CLI
-- Includes localstack
-- Includes node.js 8 and npm
-- Docker image is published at https://hub.docker.com/r/ngeor/maven-localstack/
+- Builds on top of `dtzar/helm-kubectl:2.8.2`
+- Includes `terraform` 0.11.8
+- Docker image is published at https://hub.docker.com/r/ngeor/helm-kubectl-terraform/

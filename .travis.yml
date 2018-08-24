@@ -2,10 +2,7 @@ sudo: required
 services:
 - docker
 script:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t ${TRAVIS_REPO_SLUG%-docker-image} .
-- docker push ${TRAVIS_REPO_SLUG%-docker-image}
-- docker logout
+- ./build.sh
 env:
   global:
   - secure: tmD3EVVzaeaS1c/m9JWazB57LI2sH2ZnxOtHTu/Ak5UKiFYpKk+EHjWh4qilgTTEf7catlatVl6bBaAuPNOqotlhD7uoaAUjdjUV7Spsas6Cwj+XFp7kiYc0p3w9+UEz2AOdJVL07pZgJqntmhSJyuY2vhpsH9oO6ZJ3AEESek9OmFhYkMVMKHp8eXhPwIegzFZzKRpcpiGoxWPuzKy4UGqgrE7zr6Y23Su6Zp6SKc22bqfo1GPuhkg4Xt++UnDRo1HCnlhh687SJHeSH4Bd69RJ36A45uMCk9ZfvtpvmAvCn+Lejg9qb+fmGisoWtUuOmZHVYeUwnOw/8rBmzKUVM7XYUUYkAa1mJJVUkB9XuOpoTHoPWN3w1X36vPbDQR9l2sbVguQrUW8TfFBQV7BuMXtzsi8w+zQwoBIt3PI5hYIpAxvfGnH3RudXNFIV1uNmmMLimRbaMp+kMzbZkgumLDNqVPTaEBusBBpB4wFtQxzvuq9quJegIjbtbZ8bFxuoJXMp22dfcGCmzMrEL5IfKDXERCkUvxefcNIvRG74hXDD42MgRI3JINCClhtHuY5AL6abvKrLP/8sbw9x9pbmNKzDGniELd9yhzYU75IPrv5n2RYKxn/YIT7WfL77WJsI1E8f0WOTLHLhrZoMkafs0j0BS+3cYYO7ISyOQhHMhQ=
