@@ -1,9 +1,7 @@
-# docker-images
-Various Docker images.
+# docker-helm-terraform
+A Docker image that includes kubectl, helm and terraform.
 
-[![Build Status](https://travis-ci.org/ngeor/docker-images.svg?branch=master)](https://travis-ci.org/ngeor/docker-images)
-
-## helm-kubectl-terraform
+[![Build Status](https://travis-ci.org/ngeor/docker-helm-terraform.svg?branch=master)](https://travis-ci.org/ngeor/docker-helm-terraform)
 
 - Builds on top of `dtzar/helm-kubectl:2.8.2`
 - Includes `terraform` 0.11.8
