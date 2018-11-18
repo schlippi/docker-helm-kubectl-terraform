@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # Build and deploy script
 
 def run(cmd)
