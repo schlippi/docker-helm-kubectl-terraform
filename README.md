@@ -1,11 +1,10 @@
 # docker-helm-kubectl-terraform
-A Docker image that includes helm, kubectl, and terraform.
+Docker images that include helm, kubectl, and terraform.
 
 [![Build Status](https://travis-ci.org/ngeor/docker-helm-kubectl-terraform.svg?branch=master)](https://travis-ci.org/ngeor/docker-helm-kubectl-terraform)
 
 - Inspired by [dtzar/helm-kubectl](https://github.com/dtzar/helm-kubectl)
 - Includes `terraform`
-- Docker image is published at https://hub.docker.com/r/ngeor/helm-kubectl-terraform/
 
 ## Tags
 
@@ -18,6 +17,8 @@ e.g.
 `2.8.2__0.11.3__0.11.0`
 
 ### helm-kubectl-terraform
+
+[![Docker Pulls](https://img.shields.io/docker/pulls/ngeor/helm-kubectl-terraform.svg)](https://hub.docker.com/r/ngeor/helm-kubectl-terraform/)
 
 Based on alpine.
 
@@ -37,6 +38,8 @@ Based on alpine.
 | helm-kubectl-terraform:2.11.0__1.12.0__0.11.10 | v2.11.0 | v1.12.0 | 0.11.10   |
 
 ### ruby-helm-kubectl-terraform
+
+[![Docker Pulls](https://img.shields.io/docker/pulls/ngeor/ruby-helm-kubectl-terraform.svg)](https://hub.docker.com/r/ngeor/ruby-helm-kubectl-terraform/)
 
 Based on ruby:2.5.3-alpine
 
