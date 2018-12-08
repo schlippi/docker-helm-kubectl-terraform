@@ -11,8 +11,8 @@ RUN apk add --no-cache ca-certificates bash \
     && chmod +x /usr/local/bin/helm \
     && wget -q -O terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && unzip terraform.zip -d /usr/local/bin \
-    && rm -rf terraform.zip
+    && rm -rf terraform.zip \
+    && helm init -c
 
 WORKDIR /config
-
 CMD bash

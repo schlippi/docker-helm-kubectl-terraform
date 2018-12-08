@@ -50,22 +50,40 @@ def markdown(dirs, versions)
   end
 end
 
+def tag_and_push(dir, local_tag, remote_tag)
+  image_name = "#{dir}:#{local_tag}"
+  public_image_name = "#{ENV['DOCKER_USERNAME']}/#{dir}:#{remote_tag}"
+  run("docker tag #{image_name} #{public_image_name}")
+  run("docker push #{public_image_name}")
+end
+
 def deploy(dirs, versions)
   dirs.each do |dir|
     versions.each do |version|
       puts "Deploying version #{version}"
-      tag = "#{version[:helm]}__#{version[:kubectl]}__#{version[:terraform]}".gsub('v', '')
-      image_name = "#{dir}:#{tag}"
-      public_image_name = "#{ENV['DOCKER_USERNAME']}/#{image_name}"
-      run("docker tag #{image_name} #{public_image_name}")
-      run("docker push #{public_image_name}")
+      local_tag = "#{version[:helm]}__#{version[:kubectl]}__#{version[:terraform]}".gsub('v', '')
+      tag_and_push(dir, local_tag, local_tag)
+
+      if version[:terraform] == terraform_versions.last
+        remote_tag = "#{version[:helm]}__#{version[:kubectl]}".gsub('v', '')
+        tag_and_push(dir, local_tag, remote_tag)
+
+        if version[:kubectl] == kubectl_versions.last
+          remote_tag = "#{version[:helm]}".gsub('v', '')
+          tag_and_push(dir, local_tag, remote_tag)
+
+          if version[:helm] == helm_versions.last
+            tag_and_push(dir, local_tag, 'latest')
+          end
+        end
+      end
     end
   end
 end
 
-helm_versions = ['v2.8.0', 'v2.8.2', 'v2.11.0']
+helm_versions = ['v2.8.2', 'v2.11.0']
 kubectl_versions = ['v1.11.3', 'v1.12.0']
-terraform_versions = ['0.11.8', '0.11.10']
+terraform_versions = ['0.11.10']
 
 versions = []
 
