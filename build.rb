@@ -8,7 +8,8 @@ end
 
 def login
   # Login to docker
-  run("echo #{ENV['DOCKER_PASSWORD']} | docker login -u #{ENV['DOCKER_USERNAME']} --password-stdin")
+  run("echo #{ENV['DOCKER_PASSWORD']} | " \
+    "docker login -u #{ENV['DOCKER_USERNAME']} --password-stdin")
 end
 
 def logout
@@ -16,17 +17,24 @@ def logout
   run('docker logout')
 end
 
+def build_one(dir, version)
+  puts "Building version #{version}"
+  tag = "#{version[:helm]}__" \
+    "#{version[:kubectl]}__" \
+    "#{version[:terraform]}".delete('v')
+
+  build_args = "--build-arg HELM_VERSION=#{version[:helm]} " \
+               "--build-arg KUBECTL_VERSION=#{version[:kubectl]} " \
+               "--build-arg TERRAFORM_VERSION=#{version[:terraform]}"
+  image_name = "#{dir}:#{tag}"
+  run("docker build #{build_args} -t #{image_name} .")
+end
+
 def build(dirs, versions)
   dirs.each do |dir|
     Dir.chdir(dir) do
       versions.each do |version|
-        puts "Building version #{version}"
-        tag = "#{version[:helm]}__#{version[:kubectl]}__#{version[:terraform]}".gsub('v', '')
-        build_args = "--build-arg HELM_VERSION=#{version[:helm]}" + \
-                     " --build-arg KUBECTL_VERSION=#{version[:kubectl]}" + \
-                     " --build-arg TERRAFORM_VERSION=#{version[:terraform]}"
-        image_name = "#{dir}:#{tag}"
-        run("docker build #{build_args} -t #{image_name} .")
+        build_one(dir, version)
       end
     end
   end
@@ -42,9 +50,12 @@ def markdown(dirs, versions)
       puts '|------|------|---------|-----------|'
 
       versions.each do |version|
-        tag = "#{version[:helm]}__#{version[:kubectl]}__#{version[:terraform]}".gsub('v', '')
+        tag = "#{version[:helm]}__" \
+          "#{version[:kubectl]}__" \
+          "#{version[:terraform]}".delete('v')
         image_name = "#{dir}:#{tag}"
-        puts "| #{image_name} | #{version[:helm]} | #{version[:kubectl]} | #{version[:terraform]} |"
+        puts "| #{image_name} | #{version[:helm]} | #{version[:kubectl]} | " \
+          "#{version[:terraform]} |"
       end
     end
   end
@@ -57,26 +68,41 @@ def tag_and_push(dir, local_tag, remote_tag)
   run("docker push #{public_image_name}")
 end
 
-def deploy(dirs, versions)
+def deploy_one_kubectl_latest(dir, local_tag, version, helm_versions)
+  remote_tag = version[:helm].delete('v')
+  tag_and_push(dir, local_tag, remote_tag)
+
+  tag_and_push(dir, local_tag, 'latest') if version[:helm] == helm_versions.last
+end
+
+def deploy_one_terraform_latest(dir, local_tag, version, helm_versions, kubectl_versions)
+  remote_tag = "#{version[:helm]}__#{version[:kubectl]}".delete('v')
+  tag_and_push(dir, local_tag, remote_tag)
+
+  deploy_one_kubectl_latest(dir, local_tag, version, helm_versions) \
+    if version[:kubectl] == kubectl_versions.last
+end
+
+def deploy_one(dir, version, helm_versions, kubectl_versions, terraform_versions)
+  puts "Deploying version #{version}"
+  local_tag = "#{version[:helm]}__#{version[:kubectl]}__" \
+    "#{version[:terraform]}".delete('v')
+  tag_and_push(dir, local_tag, local_tag)
+
+  return unless version[:terraform] == terraform_versions.last
+  deploy_one_terraform_latest(
+    dir, local_tag, version, helm_versions,
+    kubectl_versions
+  )
+end
+
+def deploy(dirs, versions, helm_versions, kubectl_versions, terraform_versions)
   dirs.each do |dir|
     versions.each do |version|
-      puts "Deploying version #{version}"
-      local_tag = "#{version[:helm]}__#{version[:kubectl]}__#{version[:terraform]}".gsub('v', '')
-      tag_and_push(dir, local_tag, local_tag)
-
-      if version[:terraform] == terraform_versions.last
-        remote_tag = "#{version[:helm]}__#{version[:kubectl]}".gsub('v', '')
-        tag_and_push(dir, local_tag, remote_tag)
-
-        if version[:kubectl] == kubectl_versions.last
-          remote_tag = "#{version[:helm]}".gsub('v', '')
-          tag_and_push(dir, local_tag, remote_tag)
-
-          if version[:helm] == helm_versions.last
-            tag_and_push(dir, local_tag, 'latest')
-          end
-        end
-      end
+      deploy_one(
+        dir, version, helm_versions,
+        kubectl_versions, terraform_versions
+      )
     end
   end
 end
@@ -100,7 +126,7 @@ dirs = Dir.glob('*').select { |f| File.directory? f }
 
 if ARGV[0] == 'deploy'
   login
-  deploy(dirs, versions)
+  deploy(dirs, versions, helm_versions, kubectl_versions, terraform_versions)
   logout
 elsif ARGV[0] == 'markdown'
   markdown(dirs, versions)
