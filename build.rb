@@ -109,7 +109,7 @@ end
 
 helm_versions = ['v2.8.2', 'v2.11.0']
 kubectl_versions = ['v1.11.3', 'v1.12.0']
-terraform_versions = ['0.11.10']
+terraform_versions = ['0.11.11']
 
 versions = []
 
