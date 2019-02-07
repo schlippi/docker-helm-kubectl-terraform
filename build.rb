@@ -107,8 +107,8 @@ def deploy(dirs, versions, helm_versions, kubectl_versions, terraform_versions)
   end
 end
 
-helm_versions = ['v2.8.2', 'v2.11.0']
-kubectl_versions = ['v1.11.3', 'v1.12.0']
+helm_versions = ['v2.12.3']
+kubectl_versions = ['v1.12.4']
 terraform_versions = ['0.11.11']
 
 versions = []

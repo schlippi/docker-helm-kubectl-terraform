@@ -22,12 +22,11 @@ e.g.
 
 Based on alpine.
 
+### helm-kubectl-terraform
+
 | Name                                           | helm    | kubectl | terraform |
 |------------------------------------------------|---------|---------|-----------|
-| helm-kubectl-terraform:2.8.2__1.11.3__0.11.11  | v2.8.2  | v1.11.3 | 0.11.11   |
-| helm-kubectl-terraform:2.8.2__1.12.0__0.11.11  | v2.8.2  | v1.12.0 | 0.11.11   |
-| helm-kubectl-terraform:2.11.0__1.11.3__0.11.11 | v2.11.0 | v1.11.3 | 0.11.11   |
-| helm-kubectl-terraform:2.11.0__1.12.0__0.11.11 | v2.11.0 | v1.12.0 | 0.11.11   |
+| helm-kubectl-terraform:2.12.3__1.12.4__0.11.11 | v2.12.3 | v1.12.4 | 0.11.11   |
 
 ### jdk-helm-kubectl-terraform
 
@@ -38,10 +37,7 @@ Includes ant and gradle.
 
 | Name                                               | helm    | kubectl | terraform |
 |----------------------------------------------------|---------|---------|-----------|
-| jdk-helm-kubectl-terraform:2.8.2__1.11.3__0.11.11  | v2.8.2  | v1.11.3 | 0.11.11   |
-| jdk-helm-kubectl-terraform:2.8.2__1.12.0__0.11.11  | v2.8.2  | v1.12.0 | 0.11.11   |
-| jdk-helm-kubectl-terraform:2.11.0__1.11.3__0.11.11 | v2.11.0 | v1.11.3 | 0.11.11   |
-| jdk-helm-kubectl-terraform:2.11.0__1.12.0__0.11.11 | v2.11.0 | v1.12.0 | 0.11.11   |
+| jdk-helm-kubectl-terraform:2.12.3__1.12.4__0.11.11 | v2.12.3 | v1.12.4 | 0.11.11   |
 
 ### python-helm-kubectl-terraform
 
@@ -49,12 +45,11 @@ Includes ant and gradle.
 
 Based on python:alpine
 
+### python-helm-kubectl-terraform
+
 | Name                                                  | helm    | kubectl | terraform |
 |-------------------------------------------------------|---------|---------|-----------|
-| python-helm-kubectl-terraform:2.8.2__1.11.3__0.11.11  | v2.8.2  | v1.11.3 | 0.11.11   |
-| python-helm-kubectl-terraform:2.8.2__1.12.0__0.11.11  | v2.8.2  | v1.12.0 | 0.11.11   |
-| python-helm-kubectl-terraform:2.11.0__1.11.3__0.11.11 | v2.11.0 | v1.11.3 | 0.11.11   |
-| python-helm-kubectl-terraform:2.11.0__1.12.0__0.11.11 | v2.11.0 | v1.12.0 | 0.11.11   |
+| python-helm-kubectl-terraform:2.12.3__1.12.4__0.11.11 | v2.12.3 | v1.12.4 | 0.11.11   |
 
 ### ruby-helm-kubectl-terraform
 
@@ -62,9 +57,8 @@ Based on python:alpine
 
 Based on ruby:2.5.3-alpine
 
+### ruby-helm-kubectl-terraform
+
 | Name                                                | helm    | kubectl | terraform |
 |-----------------------------------------------------|---------|---------|-----------|
-| ruby-helm-kubectl-terraform:2.8.2__1.11.3__0.11.11  | v2.8.2  | v1.11.3 | 0.11.11   |
-| ruby-helm-kubectl-terraform:2.8.2__1.12.0__0.11.11  | v2.8.2  | v1.12.0 | 0.11.11   |
-| ruby-helm-kubectl-terraform:2.11.0__1.11.3__0.11.11 | v2.11.0 | v1.11.3 | 0.11.11   |
-| ruby-helm-kubectl-terraform:2.11.0__1.12.0__0.11.11 | v2.11.0 | v1.12.0 | 0.11.11   |
+| ruby-helm-kubectl-terraform:2.12.3__1.12.4__0.11.11 | v2.12.3 | v1.12.4 | 0.11.11   |
