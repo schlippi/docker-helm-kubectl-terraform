@@ -4,7 +4,7 @@ ARG HELM_VERSION="v2.8.0"
 ARG KUBECTL_VERSION="v1.11.3"
 ARG TERRAFORM_VERSION="0.11.8"
 
-RUN apk add --no-cache ca-certificates bash \
+RUN apk add --no-cache ca-certificates bash curl git \
     && wget -q https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl \
     && wget -q https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
