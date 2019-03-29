@@ -14,14 +14,14 @@ def kubectl_versions():
     '''
     Returns the kubectl versions that should be built.
     '''
-    return ['v1.12.4']
+    return ['v1.12.6']
 
 
 def terraform_versions():
     '''
     Returns the terraform versions that should be build.
     '''
-    return ['0.11.11']
+    return ['0.11.13']
 
 
 class Version:
